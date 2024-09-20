@@ -1,18 +1,33 @@
 package com.tp2.petfriends.event;
 
+import com.tp2.petfriends.service.ClienteService;
 import lombok.Getter;
-import org.springframework.context.ApplicationEvent;
 
 @Getter
-public class PetAdotadoEvent extends ApplicationEvent {
+public class PetAdotadoEvent extends DomainEvent {
 
     private final Long clienteId;
     private final Long petId;
 
-    public PetAdotadoEvent(Object source, Long clienteId, Long petId) {
-        super(source);
+    public PetAdotadoEvent(ClienteService clienteService, Long clienteId, Long petId) {
+        super();
         this.clienteId = clienteId;
         this.petId = petId;
+    }
+
+    @Override
+    public String getEventType() {
+        return "PetAdotadoEvent";
+    }
+
+    @Override
+    public String toString() {
+        return "PetAdotadoEvent{" +
+                "eventId=" + getEventId() +
+                ", occurredOn=" + getOccurredOn() +
+                ", clienteId=" + clienteId +
+                ", petId=" + petId +
+                '}';
     }
 
 }

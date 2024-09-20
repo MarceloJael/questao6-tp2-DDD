@@ -44,6 +44,7 @@ public class ClienteService {
         cliente.adicionarPet(petId);
         Cliente clienteAtualizado = clienteRepository.save(cliente);
 
+
         PetAdotadoEvent event = new PetAdotadoEvent(this, clienteId, petId);
         eventPublisher.publishEvent(event);
 
